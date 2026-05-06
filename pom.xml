@@ -6,11 +6,11 @@
 
     <groupId>eu.webrobot</groupId>
     <artifactId>webrobot-cli-sdk</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <packaging>jar</packaging>
 
     <name>WebRobot CLI Plugin SDK</name>
-    <description>Minimal public interface for extending the WebRobot CLI with plugin subcommands.</description>
+    <description>Public interfaces for extending the WebRobot CLI with plugin subcommands. Provides WebroCliPlugin, WebroCliContext, WebroApiClient and supporting types — implementations live in the CLI host.</description>
 
     <properties>
         <java.version>11</java.version>
@@ -19,7 +19,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- Zero runtime dependencies — the interface uses only java.util.List -->
+    <dependencies>
+        <!-- Provided by the CLI host at runtime. Listed so partners' compilers can
+             resolve JsonNode / Logger types when consuming this SDK. -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.9</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
